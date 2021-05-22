@@ -1,29 +1,68 @@
 package org.example;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+
         primaryStage.setTitle("Drawing Operations Test");
+
         Group root = new Group();
         Canvas canvas = new Canvas(300, 250);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         drawShapes(gc);
         root.getChildren().add(canvas);
         primaryStage.setScene(new Scene(root));
+
+        //primaryStage.initStyle(StageStyle.UNDECORATED); // no border at all...
+
+        // if needed..
+        //primaryStage.setResizable(false);
+
+        // if needed... primaryStage.setMaximized(true);
+
+        double ratio = 1; // 1 is full... exactly as if called buitl in " primaryStage.setMaximized(true);"
+        maximize(primaryStage, ratio);
+
         primaryStage.show();
+
+
     }
-    
+
+
+    private void maximize(Stage stage, double ratio){
+        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+        //set Stage boundaries to visible bounds of the main screen
+        stage.setX(primaryScreenBounds.getMinX());
+        stage.setY(primaryScreenBounds.getMinY());
+
+        double W = primaryScreenBounds.getWidth()/ratio;
+        double H = primaryScreenBounds.getHeight()/ratio;
+
+        stage.setWidth(W);
+        stage.setHeight(H);
+
+        //stage.initStyle(StageStyle.UNDECORATED);
+       // stage.initStyle(StageStyle.TRANSPARENT);
+
+    }
+
+
     public static void main(String[] args) {
         launch();
     }
