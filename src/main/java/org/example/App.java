@@ -1,12 +1,15 @@
 package org.example;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
@@ -28,6 +31,9 @@ public class App extends Application {
         drawShapes(gc);
         root.getChildren().add(canvas);
         primaryStage.setScene(new Scene(root));
+
+        //eventually..
+        addMouseClickListenerTo(canvas); // you you attach to canvas, we will detect ONLY in orginal rect.
 
         //primaryStage.initStyle(StageStyle.UNDECORATED); // no border at all...
 
@@ -67,6 +73,10 @@ public class App extends Application {
         launch();
     }
 
+
+
+
+
     private void drawShapes(GraphicsContext gc) {
         gc.setFill(Color.GREEN);
         gc.setStroke(Color.BLUE);
@@ -88,5 +98,23 @@ public class App extends Application {
                 new double[]{210, 210, 240, 240}, 4);
         gc.strokePolyline(new double[]{110, 140, 110, 140},
                 new double[]{210, 210, 240, 240}, 4);
+    }
+
+
+    //private  void addMouseClickListenerTo(Node node){// we can use node, if we want to detct clicks in this node
+    private  void addMouseClickListenerTo(Node node){
+
+        //Creating the mouse event handler
+        EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                System.out.println("CLICK! " + e.getX() + " " + e.getY()  );
+
+            }
+        };
+
+        //Registering the event filter
+        node.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+
     }
 }
