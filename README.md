@@ -1,9 +1,7 @@
 # SampleJavaFxWithResize
 
-sample usage of JAVAFX +  resize of windows, but MAINLY Jar creation.
-
-this project is the companion app for slides for JAVAFX on ing sw. POLIMI
-
+Sample usage of JAVAFX + resize of windows, but MAINLY Jar creation.
+This project is the companion app for slides for JAVAFX on ing sw. POLIMI
 Use JDK 15 for macOS if You see glitches on video using fonts.
 
 -- how to build a JAR
@@ -20,15 +18,57 @@ public class Launcher {
     }
 }
 
-3) change refs in maven from you actual name (if starting from javafx siter sample.. ) to this clsass:
+3) add in You project these maven setting for shaed:
+
+
+            <!-- added SHADE plug in -->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.0</version>
+
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <shadedArtifactAttached>true</shadedArtifactAttached>
+                            <shadedClassifierName>project-classifier</shadedClassifierName>
+                            <outputFile>shade\${project.artifactId}.jar</outputFile>
+                            <transformers>
+                                <transformer implementation=
+                                                     "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+
+                                    <!-- original:
+                                    <mainClass>org.example.App</mainClass>
+                                     -->
+
+                                    <mainClass>org.example.Launcher</mainClass>
+
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- end of added shade plugin -->
+   
+
+4) change refs in maven from you actual name (if starting from javafx site sample.. ) 
+   to this class:
 
 from:
     <mainClass>org.example.App</mainClass>
 to:
     <mainClass>org.example.Launcher</mainClass>
 
-4) to run in intelliJ, change main class in "Edit Configuration" to "Launcher"
+5) to run in intelliJ, change main class in "Edit Configuration" to "Launcher"
 
+6) ... run "mvn clean!" :)
 
-5) ... run "mvn clean!" :)
+7) run "package" from maven.
 

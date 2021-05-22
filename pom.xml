@@ -79,7 +79,7 @@
                 </executions>
             </plugin>
 
-            <!-- end of added -->
+            <!-- end of added shade plugin -->
 
 
         </plugins>
