@@ -1,6 +1,5 @@
 package org.example;
 
-import org.example.App;
 
 public class Launcher {
 

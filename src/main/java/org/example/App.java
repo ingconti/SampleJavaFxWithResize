@@ -2,7 +2,6 @@ package org.example;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -10,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
 import javafx.stage.Screen;
@@ -20,10 +18,38 @@ import javafx.stage.StageStyle;
 
 public class App extends Application {
 
+
+    public static void main(String[] args) {
+
+        FakeStartParams bootParams = FakeStartParams.fromArgs(args);
+        startMyNetwork(bootParams); // fake...
+        if (bootParams.asGui) {
+            launch();
+        }else{
+            launchCLI();
+        }
+    }
+
+
+    // CLI stuff
+    private static void launchCLI(){
+        System.out.println("hello CLI");
+    }
+
+    // Network stuff (eventually move in another class/package ...
+
+    private static void startMyNetwork(FakeStartParams bootparams){
+        System.out.println("network started!");
+    }
+
+
+
+    // Java FX stuff
+
     @Override
     public void start(Stage primaryStage) {
 
-        primaryStage.setTitle("Drawing Operations Test");
+        primaryStage.setTitle("build JAR and ZOOM Test");
 
         Group root = new Group();
         Canvas canvas = new Canvas(300, 250);
@@ -33,48 +59,48 @@ public class App extends Application {
         primaryStage.setScene(new Scene(root));
 
         //eventually..
-        addMouseClickListenerTo(canvas); // you you attach to canvas, we will detect ONLY in orginal rect.
-
-        //primaryStage.initStyle(StageStyle.UNDECORATED); // no border at all...
+        // primaryStage.initStyle(StageStyle.UNDECORATED); // no border at all...
 
         // if needed..
         //primaryStage.setResizable(false);
 
         // if needed... primaryStage.setMaximized(true);
 
-        double ratio = 1; // 1 is full... exactly as if called buitl in " primaryStage.setMaximized(true);"
-        maximize(primaryStage, ratio);
+        double ratio = 1; // 1 is full... exactly as if you call built-in method: "primaryStage.setMaximized(true);"
+        // if You pass canvas, will be resized, too. Pass nil if You ewant to keep canvas as set above.
+        Boolean keepSquare = true;
+        maximize(primaryStage, ratio, canvas, keepSquare);
 
+        //eventually..
+        addMouseClickListenerTo(canvas); // you you attach to canvas, we will detect ONLY in original rect.
+
+        // but all BEFORE show
         primaryStage.show();
-
 
     }
 
 
-    private void maximize(Stage stage, double ratio){
+    private void maximize(Stage stage, double ratio,  Canvas alsoCanvas, Boolean keepSquare){
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-        //set Stage boundaries to visible bounds of the main screen
-        stage.setX(primaryScreenBounds.getMinX());
-        stage.setY(primaryScreenBounds.getMinY());
 
+        //set Stage boundaries to visible bounds of the main screen
         double W = primaryScreenBounds.getWidth()/ratio;
         double H = primaryScreenBounds.getHeight()/ratio;
+
+        if (keepSquare) {
+            double min = Math.min(W, H);
+            W = min;
+            H = min;
+        }
 
         stage.setWidth(W);
         stage.setHeight(H);
 
-        //stage.initStyle(StageStyle.UNDECORATED);
-       // stage.initStyle(StageStyle.TRANSPARENT);
-
+        if (alsoCanvas != null){
+            alsoCanvas.setWidth(W);
+            alsoCanvas.setHeight(H);
+        }
     }
-
-
-    public static void main(String[] args) {
-        launch();
-    }
-
-
-
 
 
     private void drawShapes(GraphicsContext gc) {
@@ -101,17 +127,11 @@ public class App extends Application {
     }
 
 
-    //private  void addMouseClickListenerTo(Node node){// we can use node, if we want to detct clicks in this node
-    private  void addMouseClickListenerTo(Node node){
+    //private  void addMouseClickListenerTo(Node node){// we can use node, if we want to detect clicks in this node
+    private void addMouseClickListenerTo(Node node){
 
         //Creating the mouse event handler
-        EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent e) {
-                System.out.println("CLICK! " + e.getX() + " " + e.getY()  );
-
-            }
-        };
+        EventHandler<MouseEvent> eventHandler = e -> System.out.println("CLICK! " + e.getX() + " " + e.getY()  );
 
         //Registering the event filter
         node.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
