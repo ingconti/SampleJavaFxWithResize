@@ -1,6 +1,6 @@
 # SampleJavaFxWithResize
 
-Sample usage of JAVAFX + resize of windows, but MAINLY Jar creation.
+Sample usage of JAVAFX + resize of window/stage, but MAINLY Jar creation.
 This project is the companion app for slides for JAVAFX on ing sw. POLIMI
 Use JDK 15 for macOS if You see glitches on video using fonts.
 
