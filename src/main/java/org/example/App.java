@@ -38,8 +38,8 @@ public class App extends Application {
 
     // Network stuff (eventually move in another class/package ...
 
-    private static void startMyNetwork(FakeStartParams bootparams){
-        System.out.println("network started!");
+    private static void startMyNetwork(FakeStartParams bootParams){
+        System.out.println("network (fake) started!");
     }
 
 

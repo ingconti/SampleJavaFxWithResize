@@ -18,7 +18,7 @@ public class Launcher {
     }
 }
 
-3) add in You project these maven setting for shaed:
+3) in You project add these maven settings for shade:
 
 
             <!-- added SHADE plug in -->
@@ -58,7 +58,7 @@ public class Launcher {
             <!-- end of added shade plugin -->
    
 
-4) change refs in maven from you actual name (if starting from javafx site sample.. ) 
+4) change refs in maven from you actual name (if starting from  sample on javafx site) 
    to this class:
 
 from:
@@ -71,4 +71,6 @@ to:
 6) ... run "mvn clean!" :)
 
 7) run "package" from maven.
+
+8) Your working JAR is the one inside "shade" folder, NOT inside "target".
 
