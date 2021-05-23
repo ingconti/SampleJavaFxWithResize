@@ -66,6 +66,8 @@ from:
 to:
     <mainClass>org.example.Launcher</mainClass>
 
+(we did leave some comments to remeber it)
+
 5) to run in intelliJ, change main class in "Edit Configuration" to "Launcher"
 
 6) ... run "mvn clean!" :)
