@@ -1,5 +1,6 @@
 package org.example;
 
+import com.sun.javafx.runtime.VersionInfo;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
@@ -48,6 +49,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+
+        System.out.println(("JavaFX Version: " + VersionInfo.getVersion()));
+        System.out.println(("JavaFX Runtime Version: " + VersionInfo.getRuntimeVersion()));
 
         primaryStage.setTitle("build JAR and ZOOM Test");
 
