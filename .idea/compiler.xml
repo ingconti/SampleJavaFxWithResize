@@ -7,9 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="HelloFX_WithResize" />
-        <module name="SampleJavaFx" />
-        <module name="hellofx" />
-        <module name="SampleJavaFxWithResize" />
       </profile>
     </annotationProcessing>
   </component>
