@@ -2,7 +2,7 @@
 
 Sample usage of JAVAFX + resize of window/stage, but MAINLY Jar creation.
 This project is the companion app for slides for JAVAFX on ing sw. POLIMI
-Use JDK 15 for macOS if You see glitches on video using fonts.
+Use JDK 19 for macOS if You see glitches on video using fonts.
 
 -- how to build a JAR
 
@@ -11,12 +11,12 @@ we have to use an helper class.
    
 2) add a file Launcher.Java, whose code is:
 
-public class Launcher {
+ public class Launcher {
 
     public static void main(String[] args) {
         App.main(args);
     }
-}
+ }
 
 3) in You project add these maven settings for shade:
 

@@ -63,18 +63,21 @@ public class App extends Application {
         primaryStage.setScene(new Scene(root));
 
         //eventually..
-        // primaryStage.initStyle(StageStyle.UNDECORATED); // no border at all...
+        //primaryStage.initStyle(StageStyle.UNDECORATED); // no border at all...
 
         // if needed..
         //primaryStage.setResizable(false);
 
-        // if needed... primaryStage.setMaximized(true);
+        // if needed...
+        //primaryStage.setMaximized(true);
 
+        /*
         double ratio = 1; // 1 is full... exactly as if you call built-in method: "primaryStage.setMaximized(true);"
         // if You pass canvas, will be resized, too. Pass nil if You ewant to keep canvas as set above.
-        Boolean keepSquare = true;
+        //Boolean keepSquare = true;
+        Boolean keepSquare = false;
         maximize(primaryStage, ratio, canvas, keepSquare);
-
+*/
         //eventually..
         addMouseClickListenerTo(canvas); // you you attach to canvas, we will detect ONLY in original rect.
 
