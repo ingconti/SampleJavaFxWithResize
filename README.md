@@ -2,7 +2,7 @@
 
 Sample usage of JAVAFX + resize of window/stage, but MAINLY Jar creation.
 This project is the companion app for slides for JAVAFX on ing sw. POLIMI
-Use JDK 19 for macOS if You see glitches on video using fonts.
+Use JDK 21 for macOS if You see glitches on video using fonts.
 
 -- how to build a JAR
 
